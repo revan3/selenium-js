@@ -5,4 +5,5 @@
 	'use strict';
 
 	Selenium.router.iniciar();
+	Selenium.eventos.iniciar();
 })(window.Selenium);
