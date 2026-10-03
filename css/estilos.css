@@ -403,6 +403,7 @@ main .container {
 	border: 1px solid var(--cor-borda);
 	border-top: 6px solid var(--cor-secundaria);
 	border-radius: 0.75rem;
+	overflow-wrap: anywhere;
 }
 
 .cartao p {
