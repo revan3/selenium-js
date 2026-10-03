@@ -1,0 +1,971 @@
+/* ==========================================================
+   Associação Selenium | estilos.css
+   1. Design system (variáveis)
+   2. Base
+   3. Grid de 12 colunas
+   4. Cabeçalho e menu (hambúrguer e dropdown)
+   5. Conteúdo (seções, cartões, imagens)
+   6. Botões e estados
+   7. Formulário e validação visual
+   8. Componentes de feedback (badges, alertas, toast, modal)
+   9. Rodapé
+   10. Breakpoints (480, 768, 1024, 1280 e 1600 px)
+   11. Movimento reduzido
+   ========================================================== */
+
+/* 1. DESIGN SYSTEM */
+:root {
+	/* Cores primárias */
+	--cor-primaria: #14285a;
+	--cor-primaria-escura: #0d1836;
+	/* Cores secundárias */
+	--cor-secundaria: #3ddbd0;
+	--cor-secundaria-escura: #0b6e6a;
+	--cor-destaque: #ffd166;
+	/* Neutras */
+	--cor-texto: #1c2233;
+	--cor-texto-suave: #4a5568;
+	--cor-fundo: #ffffff;
+	--cor-fundo-suave: #eef3f8;
+	--cor-borda: #6b7a90;
+	/* Retorno do formulário */
+	--cor-erro: #b3261e;
+	--cor-sucesso: #1b6e3c;
+
+	/* Tipografia: razão 1,333 a partir de 12px */
+	--fonte-base: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+	--fs-pequeno: 0.75rem;
+	--fs-base: 1rem;
+	--fs-h3: 1.333rem;
+	--fs-h2: 1.778rem;
+	--fs-h1: 2.370rem;
+
+	/* Espaçamentos: escala de base 8 */
+	--espaco-1: 0.25rem;
+	--espaco-2: 0.5rem;
+	--espaco-3: 1rem;
+	--espaco-4: 1.5rem;
+	--espaco-5: 2rem;
+	--espaco-6: 3rem;
+	--espaco-7: 4rem;
+
+	/* Ícones dos campos (X e check) e seta do select */
+	--icone-campo-erro: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5L5 15' stroke='%23b3261e' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+	--icone-campo-ok: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10.5l4 4 8-9' stroke='%231b6e3c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+	--icone-seta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3 7l7 7 7-7' stroke='%231c2233' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+
+	/* Ícones dos alertas */
+	--icone-alerta-sucesso: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%231b6e3c'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+	--icone-alerta-erro: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23b3261e'/%3E%3Cpath d='M8 8l8 8M16 8l-8 8' stroke='white' stroke-width='2.4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+	--icone-alerta-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%2314285a'/%3E%3Ccircle cx='12' cy='7.5' r='1.5' fill='white'/%3E%3Crect x='10.8' y='10.5' width='2.4' height='7.5' rx='1' fill='white'/%3E%3C/svg%3E");
+	--icone-alerta-aviso: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L23 21H1z' fill='%230b6e6a' stroke='%230b6e6a' stroke-width='2' stroke-linejoin='round'/%3E%3Crect x='10.8' y='8.5' width='2.4' height='6' rx='1' fill='white'/%3E%3Ccircle cx='12' cy='17.4' r='1.4' fill='white'/%3E%3C/svg%3E");
+}
+
+/* 2. BASE */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--fonte-base);
+	font-size: var(--fs-base);
+	line-height: 1.6;
+	color: var(--cor-texto);
+	background-color: var(--cor-fundo);
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	line-height: 1.2;
+	color: var(--cor-primaria);
+}
+
+h1 { font-size: var(--fs-h2); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { margin: 0 0 var(--espaco-3); }
+ul, ol { margin: 0 0 var(--espaco-3); padding-left: var(--espaco-5); }
+
+a:where(:not(.botao)) {
+	color: var(--cor-secundaria-escura);
+	text-underline-offset: 0.2em;
+}
+
+a:where(:not(.botao)):hover {
+	color: var(--cor-primaria);
+}
+
+a:focus-visible {
+	outline: 3px solid var(--cor-secundaria-escura);
+	outline-offset: 3px;
+}
+
+[aria-current="page"] {
+	text-decoration: underline;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 0.3em;
+}
+
+#retorno-cadastro:not(:empty) {
+	margin-bottom: var(--espaco-4);
+}
+
+/* Lista de colaboradores salvos no localStorage */
+.secao-bloco .lista-colaboradores {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+	gap: var(--espaco-3);
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.lista-colaboradores > .cartao {
+	grid-column: auto;
+}
+
+#area-grafico {
+	margin-bottom: var(--espaco-4);
+}
+
+#area-grafico h3 {
+	margin-bottom: var(--espaco-2);
+}
+
+.grafico {
+	position: relative;
+	max-width: 32rem;
+	height: 16rem;
+}
+
+.cartao-acoes {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--espaco-2);
+}
+
+/* O roteador e a remoção de itens movem o foco para estes elementos */
+#titulo-colaboradores:focus,
+#principal:focus {
+	outline: none;
+}
+
+.so-leitor {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.pular-link {
+	position: absolute;
+	top: 0;
+	left: var(--espaco-3);
+	z-index: 30;
+	padding: var(--espaco-2) var(--espaco-3);
+	background-color: var(--cor-fundo);
+	color: var(--cor-primaria);
+	font-weight: 600;
+	transform: translateY(-120%);
+}
+
+.pular-link:focus-visible {
+	transform: translateY(0);
+}
+
+/* 3. GRID DE 12 COLUNAS */
+.container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: var(--espaco-3);
+	row-gap: var(--espaco-4);
+	width: 100%;
+	margin-inline: auto;
+	padding-inline: var(--espaco-3);
+}
+
+.container > * {
+	grid-column: span 12;
+	min-width: 0;
+}
+
+main .container {
+	padding-block: var(--espaco-5);
+}
+
+/* 4. CABEÇALHO E MENU */
+.cabecalho {
+	background-color: var(--cor-primaria);
+	color: var(--cor-fundo);
+}
+
+.cabecalho .container {
+	position: relative;
+	align-items: center;
+	padding-block: var(--espaco-3);
+	row-gap: 0;
+}
+
+.cabecalho h1 {
+	padding-right: 3.5rem;
+	color: var(--cor-fundo);
+}
+
+/* O checkbox fica escondido, mas continua acessível pelo teclado */
+.menu-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+	opacity: 0;
+}
+
+.menu-botao {
+	position: absolute;
+	top: calc(var(--espaco-3) - var(--espaco-1));
+	right: var(--espaco-3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border: 2px solid var(--cor-fundo);
+	border-radius: 0.5rem;
+	color: var(--cor-fundo);
+	cursor: pointer;
+}
+
+.menu-toggle:focus-visible + .menu-botao {
+	outline: 3px solid var(--cor-secundaria);
+	outline-offset: 3px;
+}
+
+/* Ícone hambúrguer feito só com CSS */
+.menu-icone,
+.menu-icone::before,
+.menu-icone::after {
+	display: block;
+	height: 3px;
+	background: currentColor;
+}
+
+.menu-icone {
+	position: relative;
+	width: 1.5rem;
+}
+
+.menu-icone::before,
+.menu-icone::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	transition: transform 0.3s ease;
+}
+
+.menu-icone::before { transform: translateY(-0.5rem); }
+.menu-icone::after { transform: translateY(0.5rem); }
+
+.menu-toggle:checked + .menu-botao .menu-icone {
+	background: transparent;
+}
+
+.menu-toggle:checked + .menu-botao .menu-icone::before { transform: rotate(45deg); }
+.menu-toggle:checked + .menu-botao .menu-icone::after { transform: rotate(-45deg); }
+
+/* Menu de celular: começa fechado */
+.menu-lista {
+	display: flex;
+	flex-direction: column;
+	max-height: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	visibility: hidden;
+	list-style: none;
+	transition: max-height 0.3s ease, visibility 0.3s;
+}
+
+.menu-toggle:checked ~ .menu-lista {
+	max-height: 40rem;
+	visibility: visible;
+	display: flex;
+	flex-direction: column;
+}
+
+.menu-lista a {
+	display: block;
+	padding: var(--espaco-2) 0;
+	color: var(--cor-fundo);
+	text-decoration: none;
+}
+
+.menu-lista a[aria-current="page"] {
+	text-decoration: underline;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 0.3em;
+}
+
+.menu-lista a:hover {
+	color: var(--cor-secundaria);
+	text-decoration: underline;
+}
+
+.cabecalho a:focus-visible {
+	outline: 3px solid var(--cor-secundaria);
+	outline-offset: 3px;
+}
+
+/* No celular o submenu fica sempre aberto, recuado */
+.submenu {
+	margin: 0;
+	padding: 0 0 0 var(--espaco-4);
+	list-style: none;
+}
+
+/* 5. CONTEÚDO */
+.secao-livro,
+.secao-cartoes,
+.secao-bloco {
+	padding: var(--espaco-4);
+	background-color: var(--cor-fundo-suave);
+	border-radius: 0.75rem;
+}
+
+.secao-livro,
+.secao-cartoes {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: var(--espaco-3);
+	row-gap: var(--espaco-3);
+}
+
+.secao-livro > *,
+.secao-cartoes > * {
+	grid-column: span 12;
+	min-width: 0;
+}
+
+.secao-livro img,
+.qrcode {
+	border-radius: 0.5rem;
+}
+
+.qrcode {
+	width: 100%;
+	max-width: 14rem;
+	margin-bottom: var(--espaco-3);
+}
+
+.texto p:last-child,
+.secao-bloco > :last-child {
+	margin-bottom: 0;
+}
+
+.texto,
+.secao-bloco p,
+.secao-bloco ul,
+.secao-bloco ol {
+	max-width: 70ch;
+}
+
+.secao-bloco > h2 {
+	margin-bottom: var(--espaco-3);
+}
+
+/* Cartão de projeto */
+.cartao {
+	display: flex;
+	flex-direction: column;
+	gap: var(--espaco-2);
+	padding: var(--espaco-4);
+	background-color: var(--cor-fundo);
+	border: 1px solid var(--cor-borda);
+	border-top: 6px solid var(--cor-secundaria);
+	border-radius: 0.75rem;
+}
+
+.cartao p {
+	flex-grow: 1;
+	margin: 0;
+}
+
+/* 6. BOTÕES E ESTADOS */
+.botao {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.75rem;
+	padding-block: var(--espaco-2);
+	padding-inline: var(--espaco-4);
+	background-color: var(--cor-primaria);
+	color: var(--cor-fundo);
+	border: 2px solid transparent;
+	border-radius: 0.5rem;
+	font: inherit;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.botao:hover {
+	background-color: var(--cor-primaria-escura);
+	box-shadow: 0 4px 10px rgba(13, 24, 54, 0.3);
+	transform: translateY(-1px);
+}
+
+.botao:focus-visible {
+	outline: 3px solid var(--cor-secundaria-escura);
+	outline-offset: 3px;
+}
+
+.botao:active {
+	box-shadow: none;
+	transform: translateY(1px);
+}
+
+.botao:disabled {
+	background-color: var(--cor-fundo-suave);
+	color: var(--cor-texto-suave);
+	border-color: var(--cor-borda);
+	box-shadow: none;
+	transform: none;
+	cursor: not-allowed;
+}
+
+.botao-destaque {
+	background-color: var(--cor-destaque);
+	color: var(--cor-primaria-escura);
+}
+
+.botao-destaque:hover {
+	background-color: var(--cor-primaria-escura);
+	color: var(--cor-destaque);
+}
+
+/* 7. FORMULÁRIO */
+.formulario {
+	display: grid;
+	gap: var(--espaco-4);
+}
+
+fieldset {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: var(--espaco-3);
+	row-gap: var(--espaco-3);
+	min-width: 0;
+	margin: 0;
+	padding: var(--espaco-4);
+	background-color: var(--cor-fundo);
+	border: 2px solid var(--cor-borda);
+	border-radius: 0.75rem;
+}
+
+fieldset > * {
+	grid-column: span 12;
+	min-width: 0;
+}
+
+legend {
+	padding-inline: var(--espaco-2);
+	color: var(--cor-primaria);
+	font-size: var(--fs-h3);
+	font-weight: 600;
+}
+
+.campo {
+	display: flex;
+	flex-direction: column;
+	gap: var(--espaco-1);
+}
+
+.campo label,
+.opcao label {
+	font-weight: 600;
+}
+
+input,
+select,
+textarea {
+	width: 100%;
+	min-height: 2.75rem;
+	padding: var(--espaco-2) var(--espaco-3);
+	background-color: var(--cor-fundo);
+	color: var(--cor-texto);
+	border: 2px solid var(--cor-borda);
+	border-radius: 0.5rem;
+	font: inherit;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select {
+	appearance: none;
+	padding-right: 3.5rem;
+	background-image: var(--icone-seta);
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 1rem;
+}
+
+input[type="radio"] {
+	width: 1.25rem;
+	min-height: 1.25rem;
+	padding: 0;
+	accent-color: var(--cor-primaria);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	border-color: var(--cor-primaria);
+	box-shadow: 0 0 0 3px rgba(61, 219, 208, 0.45);
+	outline: 3px solid transparent;
+}
+
+/* Validação visual: o JavaScript (validacao.js) marca o campo com aria-invalid */
+input:not([type="radio"])[aria-invalid="true"],
+select[aria-invalid="true"] {
+	padding-right: 2.5rem;
+	border-color: var(--cor-erro);
+	background-image: var(--icone-campo-erro);
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 1.25rem;
+}
+
+input:not([type="radio"])[aria-invalid="false"],
+select[aria-invalid="false"] {
+	padding-right: 2.5rem;
+	border-color: var(--cor-sucesso);
+	background-image: var(--icone-campo-ok);
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 1.25rem;
+}
+
+select[aria-invalid="true"] {
+	padding-right: 3.5rem;
+	background-image: var(--icone-campo-erro), var(--icone-seta);
+	background-position: right 2.25rem center, right 0.75rem center;
+	background-size: 1.25rem, 1rem;
+}
+
+select[aria-invalid="false"] {
+	padding-right: 3.5rem;
+	background-image: var(--icone-campo-ok), var(--icone-seta);
+	background-position: right 2.25rem center, right 0.75rem center;
+	background-size: 1.25rem, 1rem;
+}
+
+.msg-erro {
+	display: block;
+	color: var(--cor-erro);
+	font-weight: 600;
+}
+
+.dica {
+	color: var(--cor-texto-suave);
+	font-size: var(--fs-pequeno);
+}
+
+.opcoes {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--espaco-3);
+}
+
+.opcao {
+	display: flex;
+	align-items: center;
+	gap: var(--espaco-2);
+}
+
+/* 8. COMPONENTES DE FEEDBACK */
+.lista-badges,
+.lista-botoes {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--espaco-3);
+}
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--espaco-1) var(--espaco-3);
+	border: 2px solid transparent;
+	border-radius: 999px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.badge-voluntario {
+	background-color: var(--cor-secundaria);
+	color: var(--cor-primaria-escura);
+}
+
+.badge-doador {
+	background-color: var(--cor-primaria);
+	color: var(--cor-fundo);
+}
+
+.badge-pesquisador {
+	background-color: var(--cor-primaria-escura);
+	color: var(--cor-secundaria);
+}
+
+.badge-sucesso {
+	background-color: var(--cor-fundo);
+	color: var(--cor-sucesso);
+	border-color: var(--cor-sucesso);
+}
+
+.badge-erro {
+	background-color: var(--cor-fundo);
+	color: var(--cor-erro);
+	border-color: var(--cor-erro);
+}
+
+.badge-neutro {
+	background-color: var(--cor-fundo);
+	color: var(--cor-texto);
+	border-color: var(--cor-borda);
+}
+
+.pilha-alertas {
+	display: grid;
+	gap: var(--espaco-3);
+}
+
+.alerta {
+	--alerta-cor: var(--cor-primaria);
+	--alerta-icone: var(--icone-alerta-info);
+	display: flex;
+	align-items: flex-start;
+	gap: var(--espaco-3);
+	padding: var(--espaco-3) var(--espaco-4);
+	background-color: var(--cor-fundo);
+	border: 1px solid var(--cor-borda);
+	border-left: 6px solid var(--alerta-cor);
+	border-radius: 0.5rem;
+}
+
+.alerta::before {
+	content: "";
+	flex: 0 0 1.5rem;
+	height: 1.5rem;
+	margin-top: 0.125rem;
+	background-image: var(--alerta-icone);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.alerta-titulo {
+	display: block;
+	color: var(--alerta-cor);
+	font-weight: 700;
+}
+
+.alerta p {
+	margin: 0;
+	max-width: none;
+}
+
+.alerta-sucesso { --alerta-cor: var(--cor-sucesso); --alerta-icone: var(--icone-alerta-sucesso); }
+.alerta-erro { --alerta-cor: var(--cor-erro); --alerta-icone: var(--icone-alerta-erro); }
+.alerta-aviso { --alerta-cor: var(--cor-secundaria-escura); --alerta-icone: var(--icone-alerta-aviso); }
+.alerta-info { --alerta-cor: var(--cor-primaria); --alerta-icone: var(--icone-alerta-info); }
+
+.toast {
+	display: flex;
+	flex-direction: column;
+	gap: var(--espaco-1);
+	max-width: 22rem;
+	padding: var(--espaco-3) var(--espaco-4);
+	background-color: var(--cor-primaria-escura);
+	color: var(--cor-fundo);
+	border-left: 6px solid var(--cor-secundaria);
+	border-radius: 0.5rem;
+	box-shadow: 0 8px 24px rgba(13, 24, 54, 0.35);
+}
+
+.toast strong {
+	color: var(--cor-secundaria);
+}
+
+.toast-fixo {
+	position: fixed;
+	right: var(--espaco-4);
+	bottom: var(--espaco-4);
+	z-index: 20;
+	animation: toast-ciclo 7s ease both;
+}
+
+@keyframes toast-ciclo {
+	0% { opacity: 0; transform: translateY(1rem); visibility: visible; }
+	8%, 85% { opacity: 1; transform: translateY(0); visibility: visible; }
+	100% { opacity: 0; transform: translateY(1rem); visibility: hidden; }
+}
+
+@keyframes toast-suave {
+	0% { opacity: 0; visibility: visible; }
+	8%, 85% { opacity: 1; visibility: visible; }
+	100% { opacity: 0; visibility: hidden; }
+}
+
+.modal,
+.secao-bloco > .modal {
+	width: 28rem;
+	max-width: calc(100% - var(--espaco-5));
+	margin: auto;
+	padding: var(--espaco-5);
+	background-color: var(--cor-fundo);
+	color: var(--cor-texto);
+	border: 0;
+	border-radius: 0.75rem;
+	box-shadow: 0 16px 48px rgba(13, 24, 54, 0.4);
+}
+
+.modal::backdrop {
+	background-color: rgba(13, 24, 54, 0.6);
+}
+
+.modal:popover-open {
+	animation: modal-entrada 0.2s ease;
+}
+
+@keyframes modal-entrada {
+	from { opacity: 0; transform: scale(0.96); }
+	to { opacity: 1; transform: scale(1); }
+}
+
+.modal h2 {
+	margin-bottom: var(--espaco-3);
+}
+
+.modal-acoes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--espaco-3);
+	margin-top: var(--espaco-4);
+}
+
+/* 9. RODAPÉ */
+.rodape {
+	margin-top: var(--espaco-6);
+	background-color: var(--cor-primaria-escura);
+	color: var(--cor-fundo);
+}
+
+.rodape .container {
+	padding-block: var(--espaco-5);
+}
+
+.rodape h2 {
+	color: var(--cor-fundo);
+	font-size: var(--fs-h3);
+}
+
+.rodape a {
+	color: var(--cor-secundaria);
+}
+
+.rodape a:hover {
+	color: var(--cor-fundo);
+}
+
+.rodape a:focus-visible {
+	outline-color: var(--cor-secundaria);
+}
+
+address {
+	font-style: normal;
+}
+
+.contatos {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: var(--espaco-3);
+	row-gap: var(--espaco-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.contatos li {
+	grid-column: span 12;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--espaco-2);
+}
+
+/* 10. BREAKPOINTS (mobile-first, todos com min-width) */
+
+/* 480px: celulares grandes */
+@media (min-width: 480px) {
+	.contatos li {
+		grid-column: span 6;
+	}
+}
+
+/* 768px: tablets */
+@media (min-width: 768px) {
+	h1 {
+		font-size: var(--fs-h1);
+	}
+
+	.cartao {
+		grid-column: span 6;
+	}
+
+	.campo-curto {
+		grid-column: span 6;
+	}
+}
+
+/* 1024px: notebooks. Menu horizontal no lugar do hambúrguer */
+@media (min-width: 1024px) {
+	.cartao {
+		grid-column: span 4;
+	}
+
+	.secao-livro > img {
+		grid-column: span 5;
+	}
+
+	.secao-livro > .texto {
+		grid-column: span 7;
+	}
+
+	.cabecalho h1 {
+		grid-column: span 4;
+		padding-right: 0;
+	}
+
+	.cabecalho nav {
+		grid-column: span 8;
+	}
+
+	.menu-botao,
+	.menu-toggle {
+		display: none;
+	}
+
+	.menu-lista {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--espaco-3);
+		max-height: none;
+		overflow: visible;
+		visibility: visible;
+	}
+
+	.menu-lista a {
+		padding: var(--espaco-2);
+	}
+
+	.tem-submenu {
+		position: relative;
+	}
+
+	.submenu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 10;
+		min-width: 14rem;
+		padding: var(--espaco-2);
+		background-color: var(--cor-fundo);
+		border: 2px solid var(--cor-borda);
+		border-radius: 0.5rem;
+		box-shadow: 0 8px 24px rgba(13, 24, 54, 0.25);
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.2s ease, visibility 0.2s ease;
+	}
+
+	.tem-submenu:hover > .submenu,
+	.tem-submenu:focus-within > .submenu {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.submenu a {
+		color: var(--cor-primaria);
+	}
+
+	.submenu a:hover {
+		background-color: var(--cor-fundo-suave);
+		color: var(--cor-primaria);
+	}
+
+	.submenu a:focus-visible {
+		outline-color: var(--cor-secundaria-escura);
+	}
+}
+
+/* 1280px: desktops */
+@media (min-width: 1280px) {
+	.container,
+	.secao-livro,
+	.secao-cartoes,
+	fieldset {
+		column-gap: var(--espaco-5);
+	}
+
+	.container {
+		max-width: 75rem;
+	}
+}
+
+/* 1600px: telas panorâmicas */
+@media (min-width: 1600px) {
+	.container {
+		max-width: 90rem;
+	}
+
+	main .container {
+		row-gap: var(--espaco-7);
+	}
+}
+
+/* 11. MOVIMENTO REDUZIDO */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+		animation: none !important;
+	}
+
+	.toast-fixo {
+		animation: toast-suave 7s linear both !important;
+	}
+}
