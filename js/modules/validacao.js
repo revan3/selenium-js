@@ -18,7 +18,8 @@
 			valueMissing: 'Informe a sua idade.',
 			badInput: 'Informe uma idade entre 1 e 120.',
 			rangeUnderflow: 'Informe uma idade entre 1 e 120.',
-			rangeOverflow: 'Informe uma idade entre 1 e 120.'
+			rangeOverflow: 'Informe uma idade entre 1 e 120.',
+			stepMismatch: 'Digite a idade em anos inteiros, sem vírgula.'
 		},
 		cpf: {
 			valueMissing: 'Digite o CPF.',
@@ -26,7 +27,8 @@
 		},
 		email: {
 			valueMissing: 'Digite o e-mail.',
-			typeMismatch: 'Digite um e-mail válido, como nome@exemplo.com.'
+			typeMismatch: 'Digite um e-mail válido, como nome@exemplo.com.',
+			dominio: 'Digite um e-mail válido, como nome@exemplo.com.'
 		},
 		telefone: {
 			valueMissing: 'Digite o telefone.',
@@ -43,7 +45,7 @@
 	};
 
 	// Tipos de erro do navegador (campo.validity) que o código confere, em ordem
-	const TIPOS_DE_ERRO = ['badInput', 'typeMismatch', 'patternMismatch', 'rangeUnderflow', 'rangeOverflow'];
+	const TIPOS_DE_ERRO = ['badInput', 'typeMismatch', 'patternMismatch', 'rangeUnderflow', 'rangeOverflow', 'stepMismatch'];
 
 	// Só os campos que têm mensagens cadastradas são validados
 	function temRegras(campo) {
@@ -74,8 +76,13 @@
 				return regras[tipo];
 			}
 		}
-		if (campo.name === 'nome' && !/\S+\s+\S+/.test(texto)) {
+		// nome: pelo menos duas palavras, cada uma com alguma letra
+		if (campo.name === 'nome' && !/\p{L}\S*\s+\S*\p{L}/u.test(texto)) {
 			return regras.nomeCompleto;
+		}
+		// e-mail: o navegador aceita "a@b"; aqui exijo um ponto depois do @
+		if (campo.name === 'email' && !/@[^@\s]+\.[^@\s]+$/.test(texto)) {
+			return regras.dominio;
 		}
 		return '';
 	}

@@ -205,6 +205,13 @@
 		atualizarContador(formulario.elements.mensagem);
 	}
 
+	// STORAGE: outra aba do site mudou o localStorage, então a lista desta aba está velha
+	function aoMudarArmazenamento(evento) {
+		if (evento.key === null || evento.key === 'selenium:colaboradores') {
+			atualizarColaboradores();
+		}
+	}
+
 	// ANIMATIONEND (delegado): tira o toast do DOM quando a animação dele acaba
 	function aoTerminarAnimacao(evento) {
 		if (evento.target.matches('.toast-fixo')) {
@@ -224,6 +231,7 @@
 		document.addEventListener('change', aoMudarCampo);
 		document.addEventListener('submit', aoEnviar);
 		document.addEventListener('animationend', aoTerminarAnimacao);
+		window.addEventListener('storage', aoMudarArmazenamento);
 	}
 
 	Selenium.eventos = { iniciar: iniciar, fecharMenu: fecharMenu };

@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.0.2
+
+- Correção: idade decimal, nome sem letras e e-mail sem ponto eram aceitos
+- Correção: textos muito longos estouravam a largura da página (limites nos campos e quebra de palavras no cartão)
+- Correção: alterar o cadastro em outra aba agora atualiza a lista desta aba
+
 ## 1.0.1
 
 - Correção: itens inválidos no localStorage apareciam como "undefined" e não podiam ser removidos
