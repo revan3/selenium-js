@@ -43,6 +43,7 @@
 			alvo.replaceChildren();
 			alvo.insertAdjacentHTML('beforeend', T.colaboradores(A.ler()));
 		}
+		Selenium.grafico.atualizar();
 	}
 
 	// Remove do localStorage o colaborador do botão clicado

@@ -165,9 +165,20 @@
 <section class="secao-bloco" id="colaboradores-cadastrados">
 	<h2 id="titulo-colaboradores" tabindex="-1">Colaboradores cadastrados</h2>
 	<p>Esta lista fica guardada neste navegador e continua aqui depois de fechar a página.</p>
+	<div id="area-grafico" hidden>
+		<h3>Colaboradores por tipo</h3>
+		<div class="grafico"><canvas id="grafico-colaboradores" role="img" aria-label="Gráfico de colaboradores por tipo"></canvas></div>
+	</div>
 	<div id="colaboradores">${T.colaboradores(A.ler())}</div>
 </section>
 `;
+			},
+			// chamados pelo roteador depois de mostrar e antes de sair da página
+			aoMostrar: function () {
+				Selenium.grafico.atualizar();
+			},
+			aoSair: function () {
+				Selenium.grafico.destruir();
 			}
 		},
 		componentes: {
