@@ -82,7 +82,7 @@
 				datasets: [{
 					label: 'Colaboradores',
 					data: contagem.valores,
-					backgroundColor: variavelCss('--cor-primaria'),
+					backgroundColor: variavelCss('--cor-titulo'),
 					borderRadius: 4,
 					maxBarThickness: 48
 				}]
@@ -104,6 +104,18 @@
 			}
 		});
 	}
+
+	// Se a pessoa trocar o tema do sistema (claro/escuro/alto contraste) com a página aberta,
+	// o gráfico é refeito para pegar as cores novas das variáveis CSS
+	function aoMudarTema() {
+		if (instancia) {
+			destruir();
+			atualizar();
+		}
+	}
+	['(prefers-color-scheme: dark)', '(prefers-contrast: more)'].forEach(function (consulta) {
+		window.matchMedia(consulta).addEventListener('change', aoMudarTema);
+	});
 
 	Selenium.grafico = { atualizar: atualizar, destruir: destruir };
 })(window.Selenium = window.Selenium || {});
