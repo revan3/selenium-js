@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.1.0
+
+- Recurso novo: modo escuro e modo de alto contraste, que seguem a preferência do sistema
+- Contraste verificado com o axe-core nos quatro modos, sem violações
+- O gráfico acompanha a troca de tema
+
 ## 1.0.3
 
 - Documentação: README completo, com visão geral, instalação, testes e versionamento

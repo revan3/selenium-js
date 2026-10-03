@@ -13,11 +13,12 @@ O site tem quatro páginas (Início, Projetos, Seja colaborador e Componentes), 
 - Lista de colaboradores guardada no `localStorage`, que continua depois de fechar o navegador
 - Gráfico de barras dos colaboradores por tipo (Chart.js)
 - Menu hambúrguer responsivo, com navegação pelo teclado
+- Modo escuro e modo de alto contraste automáticos, que seguem a preferência do sistema (`prefers-color-scheme` e `prefers-contrast`)
 
 ## Tecnologias utilizadas
 
 - HTML5 semântico: estrutura do único arquivo `html/index.html`
-- CSS3: design system com variáveis, Grid de 12 colunas, Flexbox e componentes de feedback (badges, alertas e toast)
+- CSS3: design system com variáveis, Grid de 12 colunas, Flexbox, componentes de feedback (badges, alertas e toast) e media queries de preferência do usuário (modo escuro, alto contraste e movimento reduzido)
 - JavaScript ES6+ sem framework: scripts comuns com `defer`, um módulo por arquivo
 - Web Storage (`localStorage`): guarda os colaboradores
 - Constraint Validation API: validação do formulário
@@ -51,6 +52,7 @@ Ainda não há testes automatizados. Os testes são manuais:
 4. Recarregue a página: a lista continua. Clique em Remover: o cartão some.
 5. Teste dados quebrados: no console, rode `localStorage.setItem('selenium:colaboradores', '{[oops')` e recarregue. A lista deve aparecer vazia, sem erro no console.
 6. Valide o HTML com o Nu Html Checker: `java -jar vnu.jar --errors-only html/index.html`.
+7. Teste os temas: no DevTools do Chrome, abra Rendering e emule `prefers-color-scheme: dark` e `prefers-contrast: more`. Confira o contraste com a extensão axe DevTools (regra color-contrast) ou com o axe-core; o esperado é nenhuma violação nos quatro modos.
 
 ## Estrutura do projeto
 
