@@ -92,7 +92,7 @@
 			<legend>Dados pessoais</legend>
 			<div class="campo">
 				<label for="nome">Nome completo</label>
-				<input type="text" id="nome" name="nome" autocomplete="name" required>
+				<input type="text" id="nome" name="nome" autocomplete="name" maxlength="100" required>
 			</div>
 			<div class="campo campo-curto">
 				<label for="idade">Idade</label>
@@ -104,7 +104,7 @@
 			</div>
 			<div class="campo">
 				<label for="email">E-mail</label>
-				<input type="email" id="email" name="email" autocomplete="email" required>
+				<input type="email" id="email" name="email" autocomplete="email" maxlength="100" required>
 			</div>
 			<div class="campo campo-curto">
 				<label for="telefone">Telefone</label>
@@ -120,11 +120,11 @@
 			</div>
 			<div class="campo">
 				<label for="rua">Rua e número</label>
-				<input type="text" id="rua" name="rua" autocomplete="address-line1" required>
+				<input type="text" id="rua" name="rua" autocomplete="address-line1" maxlength="100" required>
 			</div>
 			<div class="campo">
 				<label for="cidade">Cidade</label>
-				<input type="text" id="cidade" name="cidade" autocomplete="address-level2" required>
+				<input type="text" id="cidade" name="cidade" autocomplete="address-level2" maxlength="60" required>
 			</div>
 			<div class="campo campo-curto">
 				<label for="estado">Estado</label>
