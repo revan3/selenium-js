@@ -71,6 +71,22 @@ saida = await minify(saida, {
 await writeFile(path.join(dist, 'html/index.html'), saida);
 await cp(rel('imagens'), path.join(dist, 'imagens'), { recursive: true });
 
+// Página de entrada da raiz: o endereço publicado (https://usuario.github.io/selenium-js/)
+// manda direto para html/index.html. O caminho é relativo, então funciona em qualquer subpasta.
+await writeFile(path.join(dist, 'index.html'), `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=html/index.html">
+<title>Selenium | Redirecionando</title>
+<link rel="canonical" href="html/index.html">
+</head>
+<body>
+<p><a href="html/index.html">Abrir o site da Selenium</a></p>
+</body>
+</html>
+`);
+
 // 5. Relatório de tamanhos (bytes e gzip) dos arquivos do projeto
 const pares = [
 	['CSS', ['css/estilos.css'], 'dist/css/estilos.min.css'],
