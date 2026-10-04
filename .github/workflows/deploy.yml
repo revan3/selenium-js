@@ -1,0 +1,55 @@
+name: Deploy no GitHub Pages
+
+# Roda a cada push na main (ou à mão, na aba Actions)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Só um deploy por vez; um novo cancela o que estiver em andamento
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixa o código
+        uses: actions/checkout@v4
+
+      - name: Instala o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instala as dependências (versões do package-lock.json)
+        run: npm ci
+
+      - name: Gera a build de produção (esbuild + html-minifier-terser)
+        run: npm run build
+
+      - name: Prepara o GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Envia a pasta dist
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publica
+        id: deployment
+        uses: actions/deploy-pages@v4
