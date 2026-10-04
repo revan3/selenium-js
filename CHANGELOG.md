@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.2.1
+
+- Desempenho: imagens em WebP com JPG/PNG de reserva (picture), duas larguras (400 e 800 px) por srcset e sizes, e carregamento preguiçoso (loading="lazy") nas imagens fora da primeira tela
+- Peso das imagens da página inicial: de 99.635 para 53.070 bytes (47% menos) em telas de alta densidade e para 25.556 bytes (74% menos) em celular comum
+- WebP recomprimido com qualidade 80; o QR Code continua sendo lido (testado)
+- Correção de layout: a grade passou a mirar o picture, que envolve a imagem
+
 ## 1.2.0
 
 - Recurso novo: build de produção com esbuild e html-minifier-terser (npm run build), com saída em dist/
