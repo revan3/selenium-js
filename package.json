@@ -1,0 +1,14 @@
+{
+  "name": "selenium-js",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Associação Selenium: SPA em JavaScript puro (projeto 3)",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "html-minifier-terser": "7.2.0"
+  }
+}

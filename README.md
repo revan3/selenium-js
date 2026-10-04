@@ -23,13 +23,15 @@ O site tem quatro páginas (Início, Projetos, Seja colaborador e Componentes), 
 - Web Storage (`localStorage`): guarda os colaboradores
 - Constraint Validation API: validação do formulário
 - Chart.js 4.5.1 (licença MIT): gráfico, em `js/vendor`
+- esbuild 0.28.2 e html-minifier-terser 7.2.0: build de produção, só em desenvolvimento
 - Git com GitFlow e Conventional Commits: controle de versão
 
 ## Pré-requisitos
 
 - Um navegador atual (Chrome, Edge, Firefox ou Safari)
 - Git, para clonar o repositório (ou baixe o ZIP pelo GitHub)
-- Opcional: Python 3 ou Node.js, só para abrir por um servidor local
+- Opcional: Python 3, só para abrir por um servidor local
+- Para gerar a build de produção: Node.js 18 ou superior e npm
 
 ## Instalação e execução local
 
@@ -40,7 +42,15 @@ O site tem quatro páginas (Início, Projetos, Seja colaborador e Componentes), 
 
 ## Dependências e build
 
-Não há nada para instalar nem para compilar. O site é estático e o navegador executa os arquivos como estão. A única biblioteca externa, o Chart.js, já está em `js/vendor/chart.umd.js`. Para atualizá-la: `npm install chart.js` e copie `node_modules/chart.js/dist/chart.umd.js` para `js/vendor/`.
+Para só abrir o site, não há nada para instalar: o Chart.js já está em `js/vendor/chart.umd.js`. A build de produção é opcional e usa duas ferramentas de desenvolvimento:
+
+1. Instale as dependências: `npm install` (esbuild e html-minifier-terser)
+2. Gere a build: `npm run build`
+3. Abra `dist/html/index.html` no navegador, também sem servidor
+
+O script `scripts/build.mjs` lê a ordem dos módulos do próprio `html/index.html`, junta e minifica o JavaScript em `dist/js/app.min.js` (esbuild), minifica o CSS em `dist/css/estilos.min.css` (esbuild) e o HTML (html-minifier-terser), e copia o Chart.js e as imagens. O Chart.js fica fora do bundle porque já vem minificado e muda raramente. No fim, o script imprime a tabela de tamanhos. Resultado atual: CSS 19,7% menor, JavaScript 41,1% menor e HTML 27,6% menor (33,1% no total, 31,6% com gzip), e 11 requisições de script viram 2. A pasta `dist/` fica no repositório para o site abrir direto, sem precisar gerar a build.
+
+Para atualizar o Chart.js: `npm install chart.js` e copie `node_modules/chart.js/dist/chart.umd.js` para `js/vendor/`.
 
 ## Testes
 
@@ -51,8 +61,9 @@ Ainda não há testes automatizados. Os testes são manuais:
 3. Preencha tudo corretamente e envie: aparecem o alerta de sucesso, o cartão na lista e o gráfico.
 4. Recarregue a página: a lista continua. Clique em Remover: o cartão some.
 5. Teste dados quebrados: no console, rode `localStorage.setItem('selenium:colaboradores', '{[oops')` e recarregue. A lista deve aparecer vazia, sem erro no console.
-6. Valide o HTML com o Nu Html Checker: `java -jar vnu.jar --errors-only html/index.html`.
-7. Teste os temas: no DevTools do Chrome, abra Rendering e emule `prefers-color-scheme: dark` e `prefers-contrast: more`. Confira o contraste com a extensão axe DevTools (regra color-contrast) ou com o axe-core; o esperado é nenhuma violação nos quatro modos.
+6. Depois de `npm run build`, repita os passos 1 a 5 em `dist/html/index.html`: o comportamento deve ser idêntico ao da versão sem minificação.
+7. Valide o HTML com o Nu Html Checker: `java -jar vnu.jar --errors-only html/index.html`.
+8. Teste os temas: no DevTools do Chrome, abra Rendering e emule `prefers-color-scheme: dark` e `prefers-contrast: more`. Confira o contraste com a extensão axe DevTools (regra color-contrast) ou com o axe-core; o esperado é nenhuma violação nos quatro modos.
 
 ## Estrutura do projeto
 
@@ -62,6 +73,8 @@ Ainda não há testes automatizados. Os testes são manuais:
 - `js/main.js`: ponto de entrada, só inicia o site
 - `js/modules/`: um arquivo por responsabilidade: `dados`, `templates`, `mascaras`, `validacao`, `armazenamento`, `grafico`, `views`, `router` e `eventos`
 - `js/vendor/`: biblioteca de terceiros (Chart.js) e a sua licença
+- `scripts/build.mjs` e `package.json`: build de produção
+- `dist/`: resultado da build (minificado), gerado por `npm run build`
 
 Os módulos usam scripts comuns, e não `type="module"`, porque o navegador bloqueia módulos quando o site abre direto pelo arquivo. Cada arquivo guarda as suas variáveis dentro de uma função e só expõe o que precisa no objeto `Selenium`.
 
