@@ -17,7 +17,10 @@
 			get html() {
 				return String.raw`<section class="secao-livro" id="quem-somos">
 	<h2>Quem somos</h2>
-	<img src="../imagens/quem-somos.jpg" alt="Ilustração de um cérebro formado por linhas de circuito eletrônico" width="800" height="533">
+	<picture>
+		<source type="image/webp" srcset="../imagens/quem-somos-400.webp 400w, ../imagens/quem-somos.webp 800w" sizes="(min-width: 1024px) 40vw, 100vw">
+		<img src="../imagens/quem-somos.jpg" srcset="../imagens/quem-somos-400.jpg 400w, ../imagens/quem-somos.jpg 800w" sizes="(min-width: 1024px) 40vw, 100vw" alt="Ilustração de um cérebro formado por linhas de circuito eletrônico" width="800" height="533" decoding="async">
+	</picture>
 	<div class="texto">
 		<p>Olá, caros visitantes!</p>
 		<p>Somos a equipe de pesquisa em neurociências digitais sob o nome Selenium. Sejam bem-vindos à nossa casa.</p>
@@ -27,7 +30,10 @@
 
 <section class="secao-livro" id="objetivo">
 	<h2>Nosso objetivo</h2>
-	<img src="../imagens/objetivo.jpg" alt="Criança e adulto usando um tablet juntos, com um pesquisador ao lado" width="800" height="533">
+	<picture>
+		<source type="image/webp" srcset="../imagens/objetivo-400.webp 400w, ../imagens/objetivo.webp 800w" sizes="(min-width: 1024px) 40vw, 100vw">
+		<img src="../imagens/objetivo.jpg" srcset="../imagens/objetivo-400.jpg 400w, ../imagens/objetivo.jpg 800w" sizes="(min-width: 1024px) 40vw, 100vw" alt="Criança e adulto usando um tablet juntos, com um pesquisador ao lado" width="800" height="533" loading="lazy" decoding="async">
+	</picture>
 	<div class="texto">
 		<p>Nosso objetivo é desenvolver tecnologias que ajudem na pesquisa, no tratamento e no apoio a pessoas com diferentes tipos de neurodivergência. Queremos adaptar o mundo ao contexto que melhor atenda cada pessoa, estimulando e apoiando as tarefas do dia a dia.</p>
 	</div>
@@ -35,7 +41,10 @@
 
 <section class="secao-livro" id="ajudar">
 	<h2>Como nos ajudar</h2>
-	<img src="../imagens/pix-qrcode.png" alt="QR Code de exemplo para doação via Pix" width="400" height="400">
+	<picture>
+		<source type="image/webp" srcset="../imagens/pix-qrcode.webp">
+		<img src="../imagens/pix-qrcode.png" alt="QR Code de exemplo para doação via Pix" width="400" height="400" loading="lazy" decoding="async">
+	</picture>
 	<div class="texto">
 		<p>Venha fazer parte da Selenium! Você pode ajudar de várias formas:</p>
 		<ul>
@@ -74,7 +83,10 @@
 	<ol>
 		${T.lista(D.passosPix, T.item)}
 	</ol>
-	<img class="qrcode" src="../imagens/pix-qrcode.png" alt="QR Code de exemplo para doação via Pix" width="400" height="400">
+	<picture>
+		<source type="image/webp" srcset="../imagens/pix-qrcode.webp">
+		<img class="qrcode" src="../imagens/pix-qrcode.png" alt="QR Code de exemplo para doação via Pix" width="400" height="400" loading="lazy" decoding="async">
+	</picture>
 	<p><a class="botao botao-destaque" href="#/cadastro">Quero ajudar</a></p>
 </section>
 `;
