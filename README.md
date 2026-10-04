@@ -48,7 +48,7 @@ Para só abrir o site, não há nada para instalar: o Chart.js já está em `js/
 2. Gere a build: `npm run build`
 3. Abra `dist/html/index.html` no navegador, também sem servidor
 
-O script `scripts/build.mjs` lê a ordem dos módulos do próprio `html/index.html`, junta e minifica o JavaScript em `dist/js/app.min.js` (esbuild), minifica o CSS em `dist/css/estilos.min.css` (esbuild) e o HTML (html-minifier-terser), e copia o Chart.js e as imagens. O Chart.js fica fora do bundle porque já vem minificado e muda raramente. No fim, o script imprime a tabela de tamanhos. Resultado atual: CSS 19,7% menor, JavaScript 41,1% menor e HTML 27,6% menor (33,1% no total, 31,6% com gzip), e 11 requisições de script viram 2. A pasta `dist/` fica no repositório para o site abrir direto, sem precisar gerar a build.
+O script `scripts/build.mjs` lê a ordem dos módulos do próprio `html/index.html`, junta e minifica o JavaScript em `dist/js/app.min.js` (esbuild), minifica o CSS em `dist/css/estilos.min.css` (esbuild) e o HTML (html-minifier-terser), e copia o Chart.js e as imagens. O Chart.js fica fora do bundle porque já vem minificado e muda raramente. No fim, o script imprime a tabela de tamanhos. Resultado atual: CSS 19,7% menor, JavaScript 40,3% menor e HTML 27,6% menor (32,7% no total, 31,4% com gzip), e 11 requisições de script viram 2. A pasta `dist/` fica no repositório para o site abrir direto, sem precisar gerar a build.
 
 Para atualizar o Chart.js: `npm install chart.js` e copie `node_modules/chart.js/dist/chart.umd.js` para `js/vendor/`.
 
@@ -69,7 +69,7 @@ Ainda não há testes automatizados. Os testes são manuais:
 
 - `html/`: o único arquivo HTML (`index.html`)
 - `css/`: `estilos.css`, com o design system
-- `imagens/`: imagens do site em dois formatos cada
+- `imagens/`: imagens do site em WebP, com JPG/PNG de reserva e uma versão de 400 px de largura para telas pequenas
 - `js/main.js`: ponto de entrada, só inicia o site
 - `js/modules/`: um arquivo por responsabilidade: `dados`, `templates`, `mascaras`, `validacao`, `armazenamento`, `grafico`, `views`, `router` e `eventos`
 - `js/vendor/`: biblioteca de terceiros (Chart.js) e a sua licença
