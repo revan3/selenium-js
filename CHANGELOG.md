@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.2.0
+
+- Recurso novo: build de produção com esbuild e html-minifier-terser (npm run build), com saída em dist/
+- Redução de 33,1% no total dos arquivos do projeto (CSS 19,7%, JS 41,1%, HTML 27,6%)
+- Mesmos testes de comportamento aprovados na versão minificada
+
 ## 1.1.0
 
 - Recurso novo: modo escuro e modo de alto contraste, que seguem a preferência do sistema
