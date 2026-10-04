@@ -52,6 +52,12 @@ O script `scripts/build.mjs` lê a ordem dos módulos do próprio `html/index.ht
 
 Para atualizar o Chart.js: `npm install chart.js` e copie `node_modules/chart.js/dist/chart.umd.js` para `js/vendor/`.
 
+## Publicação (deploy)
+
+O site é publicado no GitHub Pages por um fluxo automático (`.github/workflows/deploy.yml`). A cada push na `main`, o GitHub Actions baixa o código, instala as dependências com `npm ci` (versões do `package-lock.json`), roda `npm run build` e publica a pasta `dist/`. O endereço é `https://revan3.github.io/selenium-js/`, que redireciona para `html/index.html`. Os caminhos do site são relativos, então ele funciona dentro da subpasta `/selenium-js/`.
+
+Para ativar uma única vez, no repositório: Settings, Pages, Build and deployment, Source: GitHub Actions. Depois disso, cada release mesclada na `main` é publicada sozinha, e o histórico de execuções fica na aba Actions.
+
 ## Testes
 
 Ainda não há testes automatizados. Os testes são manuais:
