@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.3.1
+
+- Correção: a pasta dist/ ficou fora da release 1.3.0 por um erro de cópia e foi restaurada, agora com dist/index.html
+
 ## 1.3.0
 
 - Recurso novo: deploy automático no GitHub Pages com GitHub Actions (.github/workflows/deploy.yml)
