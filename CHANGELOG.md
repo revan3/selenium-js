@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.3.0
+
+- Recurso novo: deploy automático no GitHub Pages com GitHub Actions (.github/workflows/deploy.yml)
+- A cada push na main: npm ci, npm run build e publicação da pasta dist
+- O build gera dist/index.html, que redireciona para html/index.html
+- Build testada em subpasta (/selenium-js/), sem erros 404 e sem erros no console
+
 ## 1.2.1
 
 - Desempenho: imagens em WebP com JPG/PNG de reserva (picture), duas larguras (400 e 800 px) por srcset e sizes, e carregamento preguiçoso (loading="lazy") nas imagens fora da primeira tela
